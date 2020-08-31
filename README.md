@@ -1,3 +1,2 @@
-# detiny_vectors_calculator
-
-Test the vector generator to measure the free space in an interaction
+# Clearance vectors calculator 
+Train, visualize and configure to test on environments, the interaction between entities.
