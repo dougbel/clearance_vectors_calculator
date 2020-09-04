@@ -8,7 +8,7 @@ import trimesh
 from scipy.interpolate import Rbf
 from tqdm import trange
 
-from si.fulldatascores import FullDataScores
+from si.fulldataclearancescores import FullDataClearanceScores
 from viewer.ViewScores import ViewScores
 
 
@@ -17,11 +17,12 @@ class ControlScores:
 
     interpolator = None
 
-    def __init__(self, path, limit_score, limit_missing):
+    def __init__(self, path, limit_score, limit_missing, limit_cv_collided):
         self.working_directory = path
         self.scores_data, propagation_epsilon = self.__read_scores()
 
-        self.view = ViewScores(self, self.scores_data.max_score, 512, limit_score, limit_missing, propagation_epsilon)
+        self.view = ViewScores(self, self.scores_data.max_score, 512, 100, limit_score, limit_missing,
+                               limit_cv_collided, propagation_epsilon)
         self.file_mesh_env = os.path.join(path, "test_environment.ply")  # "scene0000_00_vh_clean_2.ply")
 
     def __read_scores(self):
@@ -34,7 +35,7 @@ class ControlScores:
             propagation_epsilon = test_json['testing_radius'] * 2
             affordance_name = test_json['tester_info']['interactions'][0]['affordance_name']
 
-        scores_data = FullDataScores(df_scores_data, affordance_name)
+        scores_data = FullDataClearanceScores(df_scores_data, affordance_name)
         return scores_data, propagation_epsilon
 
     def start(self):
@@ -44,8 +45,9 @@ class ControlScores:
     def update_point_visualization(self):
         self.view.clean_environment()
         # extract and draw information about filtered points
-        np_filtered_points, np_filtered_scores, __ = self.scores_data.filter_data_scores(self.view.slide_score,
-                                                                                         self.view.slide_missings)
+        np_filtered_points, np_filtered_scores, __, __ = self.scores_data.filter_data_scores(self.view.slide_score,
+                                                                                         self.view.slide_missings,
+                                                                                         self.view.slide_cv_collided)
         self.view.add_point_cloud(np_filtered_points, np_filtered_scores)
 
         # draw sampled points with environment BAD normal
@@ -55,9 +57,11 @@ class ControlScores:
         self.view.vp.show(interactive=1)
 
     def show_histograms(self):
-        __, np_filtered_scores, np_filtered_missings = self.scores_data.filter_data_scores(self.view.slide_score,
-                                                                                           self.view.slide_missings)
-        self.view.show_histograms(self.scores_data.np_scores, np_filtered_scores, self.scores_data.np_missings,
+        __, np_filtered_scores, np_filtered_missings, __ = self.scores_data.filter_data_scores(self.view.slide_score,
+                                                                                           self.view.slide_missings,
+                                                                                           self.view.slide_cv_collided)
+        __, np_raw_points_scores, np_raw_points_missings, np_raw_cv_collided = self.scores_data.get_raw_data()
+        self.view.show_histograms(np_raw_points_scores, np_filtered_scores, np_raw_points_missings,
                                   np_filtered_missings)
 
     def rbf_propagation(self):
@@ -67,8 +71,9 @@ class ControlScores:
         bad_normal_points = self.scores_data.np_bad_normal_points
         bad_normal_scores = np.zeros(self.scores_data.np_bad_normal_points.shape[0])
 
-        np_filtered_points, np_filtered_scores, __ = self.scores_data.filter_data_scores(self.view.slide_score,
-                                                                                         self.view.slide_missings)
+        np_filtered_points, np_filtered_scores, __, __ = self.scores_data.filter_data_scores(self.view.slide_score,
+                                                                                         self.view.slide_missings,
+                                                                                         self.view.slide_cv_collided)
         # MAPPING SCORES TO [0,1]
         np_filtered_scores_mapped = [-value_in / self.view.slide_score + 1 for value_in in np_filtered_scores]
 

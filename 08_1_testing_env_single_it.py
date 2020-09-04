@@ -21,10 +21,10 @@ if __name__ == '__main__':
     logging.info('Reading configuration interactions to test')
 
     # ON HANGING RACK
-    # file_env = './data/hanging-rack.ply'
+    # env_file = './data/scenes/hanging-rack.ply'
     # testing_radius = 0.005
-    # directory_of_trainings = "./output/descriptors_repository/IBSMesh_400_4_OnGivenPointCloudWeightedSampler_5_1500"
-    # json_conf_execution_file = "./data/single_testing_hanging_umbrella.json"
+    # directory_of_trainings = "./output/descriptors_repository/IBSMesh_400_4_OnGivenPointCloudWeightedSampler_5_1500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
+    # json_conf_execution_file = "./data/test_configs/single_testing_hanging_umbrella.json"
     # output_dir = './output/testing_env_single/hanging_rack'
 
     # ON SCENE_0000_00
@@ -40,12 +40,18 @@ if __name__ == '__main__':
     # json_conf_execution_file = "./data/test_configs/single_testing_child_laying.json"
     # json_conf_execution_file = "./data/test_configs/single_testing_placing_small_box.json"
     # json_conf_execution_file = "./data/test_configs/single_testing_placing_large_box.json"
+
     directory_of_trainings = "./output/descriptors_repository/IBSMesh_2000_2_OnGivenPointCloudWeightedSampler_5_500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
     json_conf_execution_file = "./data/test_configs/single_testing_reaching_out_low.json"
     # json_conf_execution_file = "./data/test_configs/single_testing_reaching_out_mid_low.json"
     # json_conf_execution_file = "./data/test_configs/single_testing_reaching_out_mid_up.json"
+
     # directory_of_trainings = "./output/descriptors_repository/IBSMesh_2000_2_OnGivenPointCloudWeightedSampler_5_1500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
     # json_conf_execution_file = "./data/test_configs/single_testing_reaching_out_up.json"
+
+    # directory_of_trainings = "./output/descriptors_repository/IBSMesh_400_4_OnGivenPointCloudWeightedSampler_5_1500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
+    # json_conf_execution_file = "./data/test_configs/single_testing_hanging_umbrella.json"
+
     output_dir = './output/testing_env_single/scene0000_00'
 
     tri_mesh_env = trimesh.load_mesh(env_file)
@@ -55,12 +61,12 @@ if __name__ == '__main__':
     end = time.time()  # timing execution
     print("Sampling 1 Execution time: ", end - start)
 
-    start = time.time()  # timing execution
-    sampling_size = np_test_points.shape[0]
-    np_test_points = util.sample_points_poisson_disk(tri_mesh_env, sampling_size)
-    np_env_normals = util.get_normal_nearest_point_in_mesh(tri_mesh_env, np_test_points)
-    end = time.time()  # timing execution
-    print("Sampling 2 Execution time: ", end - start)
+    # start = time.time()  # timing execution
+    # sampling_size = np_test_points.shape[0]
+    # np_test_points = util.sample_points_poisson_disk(tri_mesh_env, sampling_size)
+    # np_env_normals = util.get_normal_nearest_point_in_mesh(tri_mesh_env, np_test_points)
+    # end = time.time()  # timing execution
+    # print("Sampling 2 Execution time: ", end - start)
 
     tester = EnviroTesterClearance(directory_of_trainings, json_conf_execution_file)
 
@@ -81,6 +87,8 @@ if __name__ == '__main__':
     # SAVING output
 
     output_dir = os.path.join(output_dir, affordance_name + '_' + affordance_object)
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
 
     logging.info('Saving results on ' + output_dir)
 

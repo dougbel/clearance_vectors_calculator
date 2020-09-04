@@ -15,19 +15,24 @@ if __name__ == '__main__':
     interactions_data = pd.read_csv("./data/interactions/interaction.csv")
 
     to_test = 'reaching_out_low'
+    cv_threshold = None
     ################################
     # CONFIGURATIONS USED FOR
     ################################
     #     # sitting
     #     # standing_up_floor
-    #     # child_laying        laying
-    #     # placing_large_box   placing_small_box
+    #     # child_laying
+    #     # laying
+    #     # placing_large_box
+    #     # placing_small_box
     # ibs_init_size_sampling = 400
     # ibs_resamplings = 4
     # sampler_rate_ibs_samples = 5
     # sampler_rate_generated_random_numbers = 500
 
-    #     # reaching_out_low    reaching_out_mid_low    reaching_out_mid_up
+    #     # reaching_out_low
+    #     # reaching_out_mid_low
+    #     # reaching_out_mid_up
     ibs_init_size_sampling = 2000
     ibs_resamplings = 2
     sampler_rate_ibs_samples = 5
@@ -44,6 +49,7 @@ if __name__ == '__main__':
     # ibs_resamplings = 4
     # sampler_rate_ibs_samples = 5
     # sampler_rate_generated_random_numbers = 1500
+    # cv_threshold = 0.01
 
     interaction = interactions_data[interactions_data['interaction'] == to_test]
 
@@ -90,7 +96,7 @@ if __name__ == '__main__':
     # cv_sampler = OnObjectPoissonDiscSamplerClearance()
     # cv_sampler = PropagateFromSpherePoissonDiscSamplerClearance()
     # cv_sampler = PropagateObjectNormalFromSpherePoissonDiscSamplerClearance()
-    cv_sampler = PropagateNormalObjectPoissonDiscSamplerClearance()
+    cv_sampler = PropagateNormalObjectPoissonDiscSamplerClearance(distance_threshold=cv_threshold)
     trainer = TrainerClearance(tri_mesh_ibs=tri_mesh_ibs_segmented, tri_mesh_env=tri_mesh_env,
                                tri_mesh_obj=tri_mesh_obj, pv_sampler=pv_sampler, cv_sampler=cv_sampler)
 
@@ -113,7 +119,7 @@ if __name__ == '__main__':
                                  tri_mesh_env, tri_mesh_obj, tri_mesh_ibs_segmented)
 
     from vedo.shapes import convexHull
-    ch = convexHull(trainer.cv_points).alpha(.3)
+    ch = convexHull(trainer.cv_points).alpha(.1)
     plot.actors.append(ch)
 
     plot.show()
