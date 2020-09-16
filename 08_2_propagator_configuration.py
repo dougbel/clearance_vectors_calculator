@@ -1,6 +1,6 @@
 import os
 
-from viewer.ControlScores import ControlScores
+from viewer.enviro_scores.ControlScores import ControlScores
 
 if __name__ == '__main__':
     ######################################################
@@ -34,6 +34,11 @@ if __name__ == '__main__':
     # HANGING RACK
     # ######################
     # dir_data = "./output/testing_env_single/hanging_rack"
+    # dir_output = "./output/propagators_configs/hanging_rack"
+    # affordance = "hanging_umbrella_umbrella"
+    # max_limit_score = 12.5
+    # max_limit_missing = 1
+    # dir_data = "./output/testing_env_single/scene0000_00"
     # dir_output = "./output/propagators_configs/hanging_rack"
     # affordance = "hanging_umbrella_umbrella"
     # max_limit_score = 12.5

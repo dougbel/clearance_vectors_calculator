@@ -9,7 +9,7 @@ from scipy.interpolate import Rbf
 from tqdm import trange
 
 from si.fulldataclearancescores import FullDataClearanceScores
-from viewer.ViewScores import ViewScores
+from viewer.enviro_scores.ViewScores import ViewScores
 
 
 class ControlScores:
@@ -110,6 +110,7 @@ class ControlScores:
 
         data = {'max_limit_score': self.view.slide_score,
                 'max_limit_missing': self.view.slide_missings,
+                'max_limit_cv_collided': self.view.slide_cv_collided,
                 'batch': self.BATCH_PROPAGATION,
                 'epsilon': self.view.propagation_epsilon,
                 'function': self.view.propagation_function}
