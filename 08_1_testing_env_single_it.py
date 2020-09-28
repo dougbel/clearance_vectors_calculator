@@ -29,7 +29,11 @@ if __name__ == '__main__':
 
     # ON SCENE_0000_00
     env_file = './data/scenes/scene0000_00_vh_clean.ply'
+    env_file_filled = './data/scenes/filled/scene0000_00_vh_clean.ply'
     testing_radius = 0.05
+
+    ####################################
+    # 8 orientations
     # directory_of_trainings = "./output/descriptors_repository/IBSMesh_400_4_OnGivenPointCloudWeightedSampler_5_500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
     # json_conf_execution_file = "./data/test_configs/single_testing_standing_up.json"
     # json_conf_execution_file = "./data/test_configs/single_testing_sitting.json"
@@ -38,18 +42,18 @@ if __name__ == '__main__':
     # json_conf_execution_file = "./data/test_configs/single_testing_placing_small_box.json"
     # json_conf_execution_file = "./data/test_configs/single_testing_placing_large_box.json"
 
-    directory_of_trainings = "./output/descriptors_repository/IBSMesh_2000_2_OnGivenPointCloudWeightedSampler_5_500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
-    json_conf_execution_file = "./data/test_configs/single_testing_reaching_out_low.json"
+    # directory_of_trainings = "./output/descriptors_repository/IBSMesh_2000_2_OnGivenPointCloudWeightedSampler_5_500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
+    # json_conf_execution_file = "./data/test_configs/single_testing_reaching_out_low.json"
     # json_conf_execution_file = "./data/test_configs/single_testing_reaching_out_mid_low.json"
     # json_conf_execution_file = "./data/test_configs/single_testing_reaching_out_mid_up.json"
 
     # directory_of_trainings = "./output/descriptors_repository/IBSMesh_2000_2_OnGivenPointCloudWeightedSampler_5_1500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
     # json_conf_execution_file = "./data/test_configs/single_testing_reaching_out_up.json"
 
-    # directory_of_trainings = "./output/descriptors_repository/IBSMesh_400_4_OnGivenPointCloudWeightedSampler_5_1500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
-    # json_conf_execution_file = "./data/test_configs/single_testing_hanging_umbrella.json"
+    directory_of_trainings = "./output/descriptors_repository/IBSMesh_400_4_OnGivenPointCloudWeightedSampler_5_1500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
+    json_conf_execution_file = "./data/test_configs/single_testing_hanging_umbrella.json"
 
-    output_dir = './output/testing_env_single/scene0000_00'
+    output_dir = './output/testing_env_single/scene0000_00/filled'
 
     tri_mesh_env = trimesh.load_mesh(env_file)
 
