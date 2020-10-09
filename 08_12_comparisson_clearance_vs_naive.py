@@ -74,7 +74,7 @@ if __name__ == '__main__':
     pts.addScalarBar(pos=(0.8, 0.25), nlabels=5, title="PV alignment distance", titleFontSize=10)
     # vp.add(pts, at=1)
     # vp.show(vedo_file_env, 'Without Clearance Vectors', at=1)
-    vp.show([pts, vedo_file_env], 'With Clearance Vectors', at=1)
+    vp.show([pts, vedo_file_env], 'Without Clearance Vectors', at=1)
 
     interactive()
 
