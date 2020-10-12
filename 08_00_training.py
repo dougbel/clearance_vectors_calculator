@@ -14,7 +14,7 @@ from it_clearance.utils import get_vtk_plotter_cv_pv
 if __name__ == '__main__':
     interactions_data = pd.read_csv("./data/interactions/interaction.csv")
 
-    to_test = 'reaching_out_low'
+    to_test = 'hanging_sloped_hat'
     cv_threshold = None
     ################################
     # CONFIGURATIONS USED FOR
@@ -33,10 +33,10 @@ if __name__ == '__main__':
     #     # reaching_out_low
     #     # reaching_out_mid_low
     #     # reaching_out_mid_up
-    ibs_init_size_sampling = 2000
-    ibs_resamplings = 2
-    sampler_rate_ibs_samples = 5
-    sampler_rate_generated_random_numbers = 500
+    # ibs_init_size_sampling = 2000
+    # ibs_resamplings = 2
+    # sampler_rate_ibs_samples = 5
+    # sampler_rate_generated_random_numbers = 500
 
     #     # reaching_out_up
     # ibs_init_size_sampling = 2000
@@ -50,6 +50,20 @@ if __name__ == '__main__':
     # sampler_rate_ibs_samples = 5
     # sampler_rate_generated_random_numbers = 1500
     # cv_threshold = 0.01
+
+    #     # hanging_sloped_hat
+    ibs_init_size_sampling = 2000
+    ibs_resamplings = 2
+    sampler_rate_ibs_samples = 5
+    sampler_rate_generated_random_numbers = 500
+    cv_threshold = 0.02
+
+    #     # ride_motorbike
+    # ibs_init_size_sampling = 400
+    # ibs_resamplings = 4
+    # sampler_rate_ibs_samples = 5
+    # sampler_rate_generated_random_numbers = 500
+
 
     interaction = interactions_data[interactions_data['interaction'] == to_test]
 
