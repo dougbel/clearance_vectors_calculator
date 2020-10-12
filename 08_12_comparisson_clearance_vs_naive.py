@@ -16,16 +16,16 @@ if __name__ == '__main__':
     # json_conf_execution_file = "./data/test_configs/single_testing_child_laying.json"
     # json_conf_execution_file = "./data/test_configs/single_testing_placing_small_box.json"
     # json_conf_execution_file = "./data/test_configs/single_testing_placing_large_box.json"
+    # json_conf_execution_file = "./data/test_configs/single_testing_ride_motorbike.json"
     # directory_of_trainings = "./output/descriptors_repository/IBSMesh_2000_2_OnGivenPointCloudWeightedSampler_5_500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
     # json_conf_execution_file = "./data/test_configs/single_testing_reaching_out_low.json"
     # jsqon_conf_execution_file = "./data/test_configs/single_testing_reaching_out_mid_low.json"
     # json_conf_execution_file = "./data/test_configs/single_testing_reaching_out_mid_up.json"
+    # json_conf_execution_file = "./data/test_configs/single_testing_hanging_sloped_hat.json"
     # directory_of_trainings = "./output/descriptors_repository/IBSMesh_2000_2_OnGivenPointCloudWeightedSampler_5_1500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
     # json_conf_execution_file = "./data/test_configs/single_testing_reaching_out_up.json"
     # directory_of_trainings = "./output/descriptors_repository/IBSMesh_400_4_OnGivenPointCloudWeightedSampler_5_1500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
     # json_conf_execution_file = "./data/test_configs/single_testing_hanging_umbrella.json"
-
-
 
     directory_env_test_results = "./output/testing_env_single/scene0000_00/filled"
     directory_of_prop_configs = "./output/propagators_configs/scene0000_00/filled"
@@ -66,9 +66,7 @@ if __name__ == '__main__':
     vp.show([pts, vedo_file_env], 'With Clearance Vectors', at=0)
 
     naive_score_data = FullDataScores(df_scores_data, affordance_name)
-    np_points, np_scores, np_missings = naive_score_data.filter_data_scores(
-        max_limit_score,
-        max_limit_missing)
+    np_points, np_scores, np_missings = naive_score_data.filter_data_scores(max_limit_score, max_limit_missing)
     pts = Points(np_points, r=5)
     pts.cellColors(np_scores, cmap='jet', vmin=0, vmax=max_limit_score)
     pts.addScalarBar(pos=(0.8, 0.25), nlabels=5, title="PV alignment distance", titleFontSize=10)

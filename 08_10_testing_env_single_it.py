@@ -50,12 +50,18 @@ if __name__ == '__main__':
     # directory_of_trainings = "./output/descriptors_repository/IBSMesh_2000_2_OnGivenPointCloudWeightedSampler_5_1500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
     # json_conf_execution_file = "./data/test_configs/single_testing_reaching_out_up.json"
 
-    directory_of_trainings = "./output/descriptors_repository/IBSMesh_400_4_OnGivenPointCloudWeightedSampler_5_1500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
-    json_conf_execution_file = "./data/test_configs/single_testing_hanging_umbrella.json"
+    # directory_of_trainings = "./output/descriptors_repository/IBSMesh_400_4_OnGivenPointCloudWeightedSampler_5_1500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
+    # json_conf_execution_file = "./data/test_configs/single_testing_hanging_umbrella.json"
+    # directory_of_trainings = "./output/descriptors_repository/IBSMesh_2000_2_OnGivenPointCloudWeightedSampler_5_500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
+    # json_conf_execution_file = "./data/test_configs/single_testing_hanging_sloped_hat.json"
+
+    directory_of_trainings = "./output/descriptors_repository/IBSMesh_400_4_OnGivenPointCloudWeightedSampler_5_500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
+    json_conf_execution_file = "./data/test_configs/single_testing_ride_motorbike.json"
 
     output_dir = './output/testing_env_single/scene0000_00/filled'
 
     tri_mesh_env = trimesh.load_mesh(env_file)
+    tri_mesh_env_filled = trimesh.load_mesh(env_file_filled)
 
     start = time.time()  # timing execution
     np_test_points, np_env_normals = util.sample_points_poisson_disk_radius(tri_mesh_env, radius=testing_radius)
@@ -79,7 +85,7 @@ if __name__ == '__main__':
 
     start = time.time()  # timing execution
     # Testing iT
-    full_data_frame = tester.start_full_test(tri_mesh_env, np_test_points, np_env_normals)
+    full_data_frame = tester.start_full_test(tri_mesh_env, tri_mesh_env_filled, np_test_points, np_env_normals)
     end = time.time()  # timing execution
     time_exe = end - start
     print("Testing execution time: ", time_exe)
