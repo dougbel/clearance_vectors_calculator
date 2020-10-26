@@ -34,8 +34,8 @@ if __name__ == '__main__':
 
     ####################################
     # 8 orientations
-    # directory_of_trainings = "./output/descriptors_repository/IBSMesh_400_4_OnGivenPointCloudWeightedSampler_5_500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
-    # json_conf_execution_file = "./data/test_configs/single_testing_standing_up.json"
+    directory_of_trainings = "./output/descriptors_repository/IBSMesh_400_4_OnGivenPointCloudWeightedSampler_5_500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
+    json_conf_execution_file = "./data/test_configs/single_testing_standing_up.json"
     # json_conf_execution_file = "./data/test_configs/single_testing_sitting.json"
     # json_conf_execution_file = "./data/test_configs/single_testing_laying.json"
     # json_conf_execution_file = "./data/test_configs/single_testing_child_laying.json"
@@ -55,8 +55,8 @@ if __name__ == '__main__':
     # directory_of_trainings = "./output/descriptors_repository/IBSMesh_2000_2_OnGivenPointCloudWeightedSampler_5_500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
     # json_conf_execution_file = "./data/test_configs/single_testing_hanging_sloped_hat.json"
 
-    directory_of_trainings = "./output/descriptors_repository/IBSMesh_400_4_OnGivenPointCloudWeightedSampler_5_500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
-    json_conf_execution_file = "./data/test_configs/single_testing_ride_motorbike.json"
+    # directory_of_trainings = "./output/descriptors_repository/IBSMesh_400_4_OnGivenPointCloudWeightedSampler_5_500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
+    # json_conf_execution_file = "./data/test_configs/single_testing_ride_motorbike.json"
 
     output_dir = './output/testing_env_single/scene0000_00/filled'
 

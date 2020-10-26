@@ -10,8 +10,8 @@ from si.fulldatascores import FullDataScores
 
 if __name__ == '__main__':
     directory_of_trainings = "./output/descriptors_repository/IBSMesh_400_4_OnGivenPointCloudWeightedSampler_5_500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
-    # json_conf_execution_file = "./data/test_configs/single_testing_standing_up.json"
-    json_conf_execution_file = "./data/test_configs/single_testing_sitting.json"
+    json_conf_execution_file = "./data/test_configs/single_testing_standing_up.json"
+    # json_conf_execution_file = "./data/test_configs/single_testing_sitting.json"
     # json_conf_execution_file = "./data/test_configs/single_testing_laying.json"
     # json_conf_execution_file = "./data/test_configs/single_testing_child_laying.json"
     # json_conf_execution_file = "./data/test_configs/single_testing_placing_small_box.json"
