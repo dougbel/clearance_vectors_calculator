@@ -28,14 +28,21 @@ if __name__ == '__main__':
     # output_dir = './output/testing_env_single/hanging_rack'
 
     # ON SCENE_0000_00
-    env_file = './data/scenes/scene0000_00_vh_clean.ply'
-    env_file_filled = './data/scenes/filled/scene0000_00_vh_clean.ply'
+    # env_file = './data/scenes/scene0000_00_vh_clean.ply'
+    # env_file_filled = './data/scenes/filled/scene0000_00_vh_clean.ply'
+    # output_dir = './output/testing_env_single/scene0000_00/filled'
+    # testing_radius = 0.05
+
+    # on artificial living room 1
+    env_file = "./data/scenes/artificial/living-room1.ply"
+    env_file_filled = "./data/scenes/artificial/living-room1.ply"
+    output_dir = './output/testing_env_single/living-room1'
     testing_radius = 0.05
 
     ####################################
     # 8 orientations
-    directory_of_trainings = "./output/descriptors_repository/IBSMesh_400_4_OnGivenPointCloudWeightedSampler_5_500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
-    json_conf_execution_file = "./data/test_configs/single_testing_standing_up.json"
+    # directory_of_trainings = "./output/descriptors_repository/IBSMesh_400_4_OnGivenPointCloudWeightedSampler_5_500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
+    # json_conf_execution_file = "./data/test_configs/single_testing_standing_up.json"
     # json_conf_execution_file = "./data/test_configs/single_testing_sitting.json"
     # json_conf_execution_file = "./data/test_configs/single_testing_laying.json"
     # json_conf_execution_file = "./data/test_configs/single_testing_child_laying.json"
@@ -55,10 +62,9 @@ if __name__ == '__main__':
     # directory_of_trainings = "./output/descriptors_repository/IBSMesh_2000_2_OnGivenPointCloudWeightedSampler_5_500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
     # json_conf_execution_file = "./data/test_configs/single_testing_hanging_sloped_hat.json"
 
-    # directory_of_trainings = "./output/descriptors_repository/IBSMesh_400_4_OnGivenPointCloudWeightedSampler_5_500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
-    # json_conf_execution_file = "./data/test_configs/single_testing_ride_motorbike.json"
+    directory_of_trainings = "./output/descriptors_repository/IBSMesh_400_4_OnGivenPointCloudWeightedSampler_5_500_PropagateNormalObjectPoissonDiscSamplerClearance_256"
+    json_conf_execution_file = "./data/test_configs/single_testing_ride_motorbike.json"
 
-    output_dir = './output/testing_env_single/scene0000_00/filled'
 
     tri_mesh_env = trimesh.load_mesh(env_file)
     tri_mesh_env_filled = trimesh.load_mesh(env_file_filled)
