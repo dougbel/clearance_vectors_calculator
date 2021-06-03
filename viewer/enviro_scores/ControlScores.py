@@ -32,7 +32,11 @@ class ControlScores:
         propagation_epsilon = 0.1
         with open(test_execution_data_file) as jsonfile:
             test_json = json.load(jsonfile)
-            propagation_epsilon = test_json['testing_radius'] * 2
+            # This IF clause if for doing compatible our output with past version
+            if "testing_radius" in test_json: # old version
+                propagation_epsilon = test_json['testing_radius'] * 2
+            else:   # newest version
+                propagation_epsilon = test_json["sampling_data"]["sampling_radius"] * 2
             affordance_name = test_json['tester_info']['interactions'][0]['affordance_name']
 
         scores_data = FullDataClearanceScores(df_scores_data, affordance_name)
