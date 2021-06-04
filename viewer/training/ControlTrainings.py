@@ -6,7 +6,7 @@ import sys
 import vtk
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QFileDialog
-from vedo import Plotter, load, Text2D, Lines, Spheres
+from vedo import Plotter, load, Text2D, Lines, Spheres, Point
 
 from it.testing.deglomerator import Deglomerator
 from it_clearance.testing.deglomerator import DeglomeratorClearance
@@ -132,5 +132,7 @@ class CtrlTrainingsVisualizer:
         pv_vectors = it_descriptor.pv_vectors[0:num_pv]
         provenance_vectors = Lines(pv_points, pv_points + pv_vectors, c='red', alpha=1).lighting("plastic")
         l_to_plot.append(provenance_vectors)
+
+        l_to_plot.append(Point((0,0,0), c='orange'))
 
         self.vp.show(l_to_plot, axes=1)
