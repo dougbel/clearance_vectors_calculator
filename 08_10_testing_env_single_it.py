@@ -14,6 +14,7 @@ from transforms3d.derivations.eulerangles import z_rotation
 
 import it.util as util
 from it_clearance.testing.envirotester import EnviroTesterClearance
+from it_clearance.utils import calculate_average_distance_nearest_neighbour
 
 if __name__ == '__main__':
 
@@ -81,6 +82,12 @@ if __name__ == '__main__':
     # end = time.time()  # timing execution
     # print("Sampling 2 Execution time: ", end - start)
 
+    sampling_data = {}
+    sampling_data['sampling_radius'] = testing_radius
+    sampling_data['sampled_points'] = np_test_points.shape[0]
+    sampling_data['sampled_avg_distance'] = calculate_average_distance_nearest_neighbour(np_test_points)
+
+
     tester = EnviroTesterClearance(directory_of_trainings, json_conf_execution_file)
 
     affordance_name = tester.affordances[0][0]
@@ -106,11 +113,12 @@ if __name__ == '__main__':
     logging.info('Saving results on ' + output_dir)
 
     data = {'execution_time_it_test': time_exe,
-            'num_points_tested': np_test_points.shape[0],
+            'sampling_data': sampling_data,
             'testing_radius': testing_radius,
             'tester_info': tester.configuration_data,
             'directory_of_trainings': directory_of_trainings,
-            'file_env': env_file
+            'file_env': env_file,
+            'file_env_filled': env_file_filled
             }
 
     with open(os.path.join(output_dir, 'test_data.json'), 'w') as outfile:
