@@ -3,10 +3,12 @@ import json
 import os
 import sys
 
+import vedo
 import vtk
+import numpy as np
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QFileDialog
-from vedo import Plotter, load, Text2D, Lines, Spheres, Point
+from vedo import Plotter, load, Text2D, Lines, Spheres, Point, Arrow
 
 from it.testing.deglomerator import Deglomerator
 from it_clearance.testing.deglomerator import DeglomeratorClearance
@@ -31,6 +33,7 @@ class CtrlTrainingsVisualizer:
         self.ui.line_descriptors.textChanged.connect(
             lambda: self.update_list_interactions(self.ui.line_descriptors.text()))
         self.ui.l_trained.itemSelectionChanged.connect(self.update_visualized_interaction)
+        self.ui.chk_view_normal_env.stateChanged.connect(self.change_view_normal_env)
 
         self.idx_iter = None
         self.path_iter = None
@@ -38,6 +41,8 @@ class CtrlTrainingsVisualizer:
 
         self.vp = Plotter(qtWidget=self.ui.vtk_widget, bg="white")
         self.vp.show([], axes=0)
+
+        self.vedo_normal_env = None
 
     def start(self):
         self.MainWindow.show()
@@ -47,6 +52,15 @@ class CtrlTrainingsVisualizer:
         file_name = str(QFileDialog.getExistingDirectory(self.MainWindow, "Select " + element + " path"))
         if file_name:
             line.setText(file_name)
+
+    def change_view_normal_env(self):
+        if not self.ui.chk_view_normal_env.isChecked():
+            if self.vedo_normal_env is not None:
+                self.vp.clear(self.vedo_normal_env)
+        else:
+            np_normal_env = np.asarray(list(map(float, self.train_data['trainer']["normal_env"].split(","))))
+            self.vedo_normal_env = Arrow([0, 0, 0], 2 * np_normal_env, c="darkorange", s=0.001)
+            self.vp.add(self.vedo_normal_env)
 
     def get_basenames(self):
         filepath_json_propagation_data = os.path.join(self.path_iter, "propagation_data.json")
@@ -81,6 +95,7 @@ class CtrlTrainingsVisualizer:
             self.ui.tree_train.expandAll()
 
             self.update_vtk_interaction(base_name)
+            self.change_view_normal_env()
 
     def update_vtk_interaction(self, base_name):
         old_camera = self.vp.camera
@@ -133,6 +148,6 @@ class CtrlTrainingsVisualizer:
         provenance_vectors = Lines(pv_points, pv_points + pv_vectors, c='red', alpha=1).lighting("plastic")
         l_to_plot.append(provenance_vectors)
 
-        l_to_plot.append(Point((0,0,0), c='orange'))
+        l_to_plot.append(Point((0,0,0), c='darkorange'))
 
         self.vp.show(l_to_plot, axes=1)

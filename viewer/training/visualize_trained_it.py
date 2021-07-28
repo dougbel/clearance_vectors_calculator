@@ -48,9 +48,12 @@ class Ui_MainWindow(object):
         self.tree_train.setIndentation(10)
         self.tree_train.setItemsExpandable(True)
         self.tree_train.setObjectName("tree_train")
+        self.chk_view_normal_env = QtWidgets.QCheckBox(self.centralwidget)
+        self.chk_view_normal_env.setGeometry(QtCore.QRect(1120, 70, 141, 23))
+        self.chk_view_normal_env.setObjectName("chk_view_normal_env")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1288, 20))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1288, 22))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -67,6 +70,7 @@ class Ui_MainWindow(object):
         self.btn_view_training.setText(_translate("MainWindow", "Zoom"))
         self.label_5.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" font-weight:600;\">Descriptors path</span></p></body></html>"))
         self.btn_path.setText(_translate("MainWindow", "Browse"))
+        self.chk_view_normal_env.setText(_translate("MainWindow", "view normal_env"))
 
 from vtk.qt.QVTKRenderWindowInteractor import QVTKRenderWindowInteractor
 
