@@ -112,7 +112,7 @@ class CtrlTrainingsVisualizer:
                      bg='darkblue', c="lightgray", font='Arial', s=0.8, alpha=0.9)
         l_to_plot.append(txt)
         vedo_env = load(env_file).c((.7, .7, .7)).alpha(1)
-        vedo_envg.lighting(ambient=0.8, diffuse=0.2, specular=0.1, specularPower=1, specularColor=(1, 1, 1))
+        vedo_env.lighting(ambient=0.8, diffuse=0.2, specular=0.1, specularPower=1, specularColor=(1, 1, 1))
         vedo_obj = load(obj_file).c((0, 1, 0)).alpha(1)
         vedo_ibs = load(ibs_file).c((0, 0, 1)).alpha(.39)
         l_to_plot.append(vedo_env)
